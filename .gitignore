@@ -1,0 +1,4 @@
+*.exe
+resources/
+backup/
+temp/
