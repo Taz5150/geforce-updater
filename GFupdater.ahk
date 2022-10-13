@@ -8,7 +8,7 @@
 7zip := "C:\Program Files\7-Zip\7z.exe"
 pathNvidia := "C:\ProgramData\NVIDIA Corporation\Drs"
 pathBackup := A_AppDataCommon  . "\NCP Backup"
-pathTemp := A_ScriptDir . "\temp"
+pathTemp := A_Temp . "\GFupdater"
 
 ; Check if temp/backup directory exists. Else, create it
 ;if (FileExist(pathTemp)) {
@@ -49,18 +49,20 @@ else
 	{
 		Url= % parsed.IDS[1].downloadInfo.DownloadURL
 		FileCreateDir, %pathTemp%
-		DownloadFile(Url, "temp\nvidia-install.exe")
+		
+		DownloadFile(Url, pathTemp . "\nvidia-install.exe")
 		
 		; Backup Control Panel settings
 		FileCopy, %pathNvidia%\nvdrsdb*.bin, %pathBackup%
 		
 		; Unzip and install only needed files
-		RunWait, %7zip% x %pathTemp%\nvidia-install.exe -o"temp"
-		RunWait temp\setup.exe
+		;RunWait, %7zip% x %pathTemp%\nvidia-install.exe -o %pathTemp%
+		RunWait, %7zip% x %pathTemp%\nvidia-install.exe -o%pathTemp%
+		RunWait %pathTemp%\setup.exe
 		
 		; Remove temporarily unzipped files and downloads without prompt
 		FileCopy, %pathBackup%\nvdrsdb*.bin, %pathNvidia%
-		FileRemoveDir, temp, 1
+		FileRemoveDir, %pathTemp%, 1
 	    FileDelete, nvidia-install.exe
     }
 }
