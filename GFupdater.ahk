@@ -7,7 +7,7 @@
 ; Paths
 7zip := "C:\Program Files\7-Zip\7z.exe"
 pathNvidia := "C:\ProgramData\NVIDIA Corporation\Drs"
-pathBackup := A_ScriptDir . "\backup"
+pathBackup := A_AppDataCommon  . "\NCP Backup"
 pathTemp := A_ScriptDir . "\temp"
 
 ; Check if temp/backup directory exists. Else, create it
