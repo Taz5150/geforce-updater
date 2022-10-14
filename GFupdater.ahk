@@ -56,7 +56,6 @@ else
 		FileCopy, %pathNvidia%\nvdrsdb*.bin, %pathBackup%
 		
 		; Unzip and install only needed files
-		;RunWait, %7zip% x %pathTemp%\nvidia-install.exe -o %pathTemp%
 		RunWait, %7zip% x %pathTemp%\nvidia-install.exe -o%pathTemp%
 		RunWait %pathTemp%\setup.exe
 		
