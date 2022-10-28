@@ -9,7 +9,7 @@
 pathNvidia := "C:\ProgramData\NVIDIA Corporation\Drs"
 pathBackup := A_AppDataCommon  . "\NCP Backup"
 pathTemp := A_Temp . "\GFupdater"
-
+		
 ; Check if temp/backup directory exists. Else, create it
 ;if (FileExist(pathTemp)) {
 ;	FileRemoveDir, %pathTemp%, 1
