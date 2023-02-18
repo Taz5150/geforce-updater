@@ -7,7 +7,7 @@
 ; Paths
 7zip := "C:\Program Files\7-Zip\7z.exe"
 pathNvidia := "C:\ProgramData\NVIDIA Corporation\Drs"
-pathBackup := A_AppDataCommon  . "\NCP Backup"
+pathBackup := A_AppDataCommon  . "\NCP Backup\"
 pathTemp := A_Temp . "\GFupdater"
 		
 ; Check if temp/backup directory exists. Else, create it
@@ -39,7 +39,8 @@ parsed := JSON.Load(oHttp.responseText)
 if(installedVersion = parsed.IDS[1].downloadInfo.Version)
 {
 	; Message box commented for scheduled running (do nothing if no update needed)
-    MsgBox,, GeForce Updater, % "GeForce Driver " . parsed.IDS[1].downloadInfo.Version . " installed. No need to update." 
+    MsgBox,, GeForce Updater, % "GeForce Driver " . parsed.IDS[1].downloadInfo.Version . " installed. No need to update."
+
 	Exit, 10
 }
 else
@@ -55,12 +56,14 @@ else
 		; Backup Control Panel settings
 		FileCopy, %pathNvidia%\nvdrsdb*.bin, %pathBackup%
 		
-		; Unzip and install only needed files
+		;Unzip and install only needed files
 		RunWait, %7zip% x %pathTemp%\nvidia-install.exe -o%pathTemp%
 		RunWait %pathTemp%\setup.exe
 		
-		; Remove temporarily unzipped files and downloads without prompt
-		FileCopy, %pathBackup%\nvdrsdb*.bin, %pathNvidia%
+		MsgBox,,"GeForce Driver Installed. Press 'OK' to backup CP files."
+		
+		;Remove temporarily unzipped files and downloads without prompt
+		FileCopy, %pathBackup%nvdrsdb*.bin, %pathNvidia%
 		FileRemoveDir, %pathTemp%, 1
 	    FileDelete, nvidia-install.exe
     }
