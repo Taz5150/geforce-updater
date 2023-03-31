@@ -51,19 +51,19 @@ else
 		Url= % parsed.IDS[1].downloadInfo.DownloadURL
 		FileCreateDir, %pathTemp%
 		
-		DownloadFile(Url, pathTemp . "\nvidia-install.exe")
-		
 		; Backup Control Panel settings
-		FileCopy, %pathNvidia%\nvdrsdb*.bin, %pathBackup%
+		FileCopy, %pathNvidia%\nvdrsdb*.bin, %pathBackup%, 1
+		
+		DownloadFile(Url, pathTemp . "\nvidia-install.exe")
 		
 		;Unzip and install only needed files
 		RunWait, %7zip% x %pathTemp%\nvidia-install.exe -o%pathTemp%
 		RunWait %pathTemp%\setup.exe
 		
-		MsgBox,,"GeForce Driver Installed. Press 'OK' to backup CP files."
+		MsgBox,, GFUpdater Finished, GeForce Driver Installed. Press 'OK' to backup CP files
 		
 		;Remove temporarily unzipped files and downloads without prompt
-		FileCopy, %pathBackup%nvdrsdb*.bin, %pathNvidia%
+		FileCopy, %pathBackup%nvdrsdb*.bin, %pathNvidia%, 1
 		FileRemoveDir, %pathTemp%, 1
 	    FileDelete, nvidia-install.exe
     }
