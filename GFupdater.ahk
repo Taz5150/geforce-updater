@@ -52,7 +52,7 @@ else
 		FileCreateDir, %pathTemp%
 		
 		; Backup Control Panel settings
-		FileCopy, %pathNvidia%\nvdrsdb*.bin, %pathBackup%, 1
+		FileCopy, %pathNvidia%\*.bin, %pathBackup%, 1
 		
 		DownloadFile(Url, pathTemp . "\nvidia-install.exe")
 		
