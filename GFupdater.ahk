@@ -29,7 +29,7 @@ if (A_PtrSize = 4 and A_Is64bitOS)
 RegRead, installedVersion, HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{B2FE1952-0186-46C3-BAEC-A80AA35AC5B8}_Display.Driver, DisplayVersion
 
 ; Retreive and parse json with latest driver information 
-url :="https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&psid=101&pfid=815&osID=57&languageCode=1033&beta=null&isWHQL=0&dltype=-1&dch=1&upCRD=null&qnf=0&sort1=0&numberOfResults=10"
+url :="https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&psid=131&pfid=1068&osID=135&languageCode=1033&beta=null&isWHQL=0&dltype=-1&dch=1&upCRD=null&qnf=0&sort1=0&numberOfResults=10"
 oHttp := ComObjCreate("WinHttp.Winhttprequest.5.1")
 oHttp.open("GET", url)
 oHttp.send()
